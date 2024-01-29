@@ -1,0 +1,32 @@
+<html lang="ru" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sign Up page</title>
+    <link href="../static/css/sign-up.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="title-block">
+        СИСТЕМА ЭЛЕКТРОННОГО ГОЛОСОВАНИЯ <br>
+        для членов президиума и общего собрания <br>
+        Дальневосточного отделения РАН
+    </div>
+    <button type="button" class="btn" onclick="onAdminClick();">ПАНЕЛЬ АДМИНА</button>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="ВВЕДИТЕ ПАРОЛЬ" class="password-input" onfocus="onInputFocus();" onblur="onInputBlur();" name="passw" />
+        <input type="submit" value="ВОЙТИ" class="submit-input"/>
+    </form>
+    <div class="fail-msg">
+        <img src="../static/img/info-red.svg" class="fail-msg-icon">
+        <div class="fail-msg-text">
+            ВВЕДЕН <br>
+            НЕВЕРНЫЙ КОД
+        </div>
+    </div>
+    <img src="../static/img/dvo-ran-lg.png" class="bg-img"/>
+    <script src="../static/js/sign-up.js"></script>
+</body>
+
+</html>
