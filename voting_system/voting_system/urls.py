@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from voting.views import sign_up
+from voting.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sign_up),
+    path('voting/', vote),
 ]

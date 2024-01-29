@@ -14,3 +14,7 @@ class VotingProcess(models.Model):
     voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
     enter_code = models.TextField(max_length=10, blank=False, null=False)
     chosen = models.TextField(blank=False)
+
+class SendResults(models.Model):
+    voting_process = models.ForeignKey(VotingProcess, on_delete=models.CASCADE)
+    email = models.TextField(blank=False, null=False)
