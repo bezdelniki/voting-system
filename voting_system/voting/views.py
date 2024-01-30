@@ -21,11 +21,11 @@ def sign_up(request):
 
         is_user_exists = VotingProcess.objects.filter(enter_code=passw)
         if is_user_exists.exists():
-            votind_id = is_user_exists.first().voting_id
+            voting_id = is_user_exists.first().voting_id
             user_id = is_user_exists.first().user_id
 
             date = timezone.localtime()
-            voting_details = Voting.objects.filter(id=votind_id).first()
+            voting_details = Voting.objects.filter(id=voting_id).first()
             user_fullname = Users.objects.filter(id=user_id).first()
 
             request.session['variants'] = voting_details.variants
@@ -36,8 +36,14 @@ def sign_up(request):
 
             # check with datetime
             if start_date <= date <= finish_date:
-                data['error_message'] = ''
-                return redirect('/voting')
+                voting_details_process = VotingProcess.objects.filter(user_id=user_id, voting_id=voting_id).first()
+                chosen = voting_details_process.chosen
+
+                if not chosen:
+                    data['error_message'] = ''
+                    return redirect('/voting')
+                else:
+                    data['error_message'] = 'HasVoted'
             else:
                 data['error_message'] = 'VotingFinished'
         else:
