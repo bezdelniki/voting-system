@@ -8,8 +8,8 @@
 
 <body>
     <div class="info-block">
-        <div class="voter-name text-2">Голосующий: Иванов Иван Иванович</div>
-        <div class="voting-id text-2">ID голосования: alkjf84wfjqoi483р</div>
+        <div class="voter-name text-2">Голосующий: {{ user_fullname }}</div>
+        <div class="voting-id text-2"></div>
     </div>
     <img src="../static/img/dvo-ran-lg.png" class="logo">
     <form method="post">
@@ -35,7 +35,7 @@
                         {{ birth|hash:i }}, {{ degree|hash:i }}
                     </div>
                     <div class="position text-2">
-                        науч чел
+                        {{ position|hash:i }}
                     </div>
                 </div>
                 <div class="col-2">

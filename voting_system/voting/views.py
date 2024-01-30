@@ -22,10 +22,15 @@ def sign_up(request):
         is_user_exists = VotingProcess.objects.filter(enter_code=passw)
         if is_user_exists.exists():
             votind_id = is_user_exists.first().voting_id
+            user_id = is_user_exists.first().user_id
+
             date = timezone.localtime()
             voting_details = Voting.objects.filter(id=votind_id).first()
+            user_fullname = Users.objects.filter(id=user_id).first()
 
             request.session['variants'] = voting_details.variants
+            request.session['fullname'] = user_fullname.full_name
+
             start_date = voting_details.start_date
             finish_date = voting_details.finish_date
 
@@ -48,9 +53,8 @@ def vote(request):
     for key in req.keys():
         data[key] = req[key]
 
-    data['data_size'] = len(req) - 1
-
-    print(data)
+    data['data_size'] = len(req["surnames"])
+    data['user_fullname'] = request.session['fullname']
 
     return render(
                     request,
