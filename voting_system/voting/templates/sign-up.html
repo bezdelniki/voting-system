@@ -20,6 +20,11 @@
     </form>
     <div class="fail-msg">
         <img src="../static/img/info-red.svg" class="fail-msg-icon">
+        {% if data.error_message != '' %}
+            <script>
+                onSignUpFailed();
+            </script>
+        {% endif %}
         <div class="fail-msg-text">
             ВВЕДЕН <br>
             НЕВЕРНЫЙ КОД
