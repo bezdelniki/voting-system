@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Users(models.Model):
@@ -6,13 +7,15 @@ class Users(models.Model):
 
 
 class Voting(models.Model):
-    variants = models.TextField(blank=False, null=False)
+    variants = models.JSONField(blank=False, null=False)
+    start_date = models.DateTimeField(blank=False, null=False, default=datetime.now())
+    finish_date = models.DateTimeField(blank=False, null=False, default=datetime.now())
 
 
 class VotingProcess(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
-    enter_code = models.TextField(max_length=10, blank=False, null=False)
+    enter_code = models.TextField(max_length=10, blank=False, null=False, unique=True)
     chosen = models.TextField(blank=False)
 
 class SendResults(models.Model):
