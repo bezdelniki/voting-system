@@ -8,8 +8,8 @@
 
 <body>
     <div class="info-block">
-        <div class="voter-name text-2">Голосующий: Иванов Иван Иванович</div>
-        <div class="voting-id text-2">ID голосования: alkjf84wfjqoi483р</div>
+        <div class="voter-name text-2">Голосующий: {{ user_fullname }}</div>
+        <div class="voting-id text-2"></div>
     </div>
     <img src="../static/img/dvo-ran-lg.png" class="logo">
     <form method="post">
@@ -21,19 +21,21 @@
                 <div class="col-1 text-4">ФИО</div>
                 <div class="col-2 text-4">Голосование</div>
             </div>
+
+            {% for i in data_size|get_range %}
             <div class="row candidate">
                 <div class="col-1">
                     <div class="last-name text-3">
-                        ОВЧИННИКОВ
+                        {{ surnames|hash:i }}
                     </div>
                     <div class="first-name-and-patronymic text-3">
-                        Роман Олегович
+                        {{ name|hash:i }}
                     </div>
                     <div class="birth-year-and-degree text-2">
-                        1992, к.г-м.н.
+                        {{ birth|hash:i }}, {{ degree|hash:i }}
                     </div>
                     <div class="position text-2">
-                        научный сотрудник
+                        {{ position|hash:i }}
                     </div>
                 </div>
                 <div class="col-2">
@@ -42,69 +44,8 @@
                     <input type="checkbox" class="hidden-checkbox" disabled name="var">
                 </div>
             </div>
-            <div class="row candidate">
-                <div class="col-1">
-                    <div class="last-name text-3">
-                        ОВЧИННИКОВ
-                    </div>
-                    <div class="first-name-and-patronymic text-3">
-                        Роман Олегович
-                    </div>
-                    <div class="birth-year-and-degree text-2">
-                        1992, к.г-м.н.
-                    </div>
-                    <div class="position text-2">
-                        научный сотрудник
-                    </div>
-                </div>
-                <div class="col-2">
-                    <button type="button" class="btn text-3" id="3">РЕКОМЕНДОВАТЬ</button>
-                    <button type="button" class="btn text-3" id="4">ОТКЛОНИТЬ</button>
-                    <input type="checkbox" class="hidden-checkbox" disabled name="var">
-                </div>
-            </div>
-            <div class="row candidate">
-                <div class="col-1">
-                    <div class="last-name text-3">
-                        ОВЧИННИКОВ
-                    </div>
-                    <div class="first-name-and-patronymic text-3">
-                        Роман Олегович
-                    </div>
-                    <div class="birth-year-and-degree text-2">
-                        1992, к.г-м.н.
-                    </div>
-                    <div class="position text-2">
-                        научный сотрудник
-                    </div>
-                </div>
-                <div class="col-2">
-                    <button type="button" class="btn text-3" id="5">РЕКОМЕНДОВАТЬ</button>
-                    <button type="button" class="btn text-3" id="6">ОТКЛОНИТЬ</button>
-                    <input type="checkbox" class="hidden-checkbox" disabled name="var">
-                </div>
-            </div>
-            <div class="row candidate">
-                <div class="col-1">
-                    <div class="last-name text-3">
-                        ОВЧИННИКОВ
-                    </div>
-                    <div class="first-name-and-patronymic text-3">
-                        Роман Олегович
-                    </div>
-                    <div class="birth-year-and-degree text-2">
-                        1992, к.г-м.н.
-                    </div>
-                    <div class="position text-2">
-                        научный сотрудник
-                    </div>
-                </div>
-                <div class="col-2">
-                    <button type="button" class="btn text-3" id="7">РЕКОМЕНДОВАТЬ</button>
-                    <button type="button" class="btn text-3" id="8">ОТКЛОНИТЬ</button>
-                    <input type="checkbox" class="hidden-checkbox" disabled name="var">
-                </div>
-            </div>
+            {% endfor %}
+
             <button type="button" class="confirm-btn text-3" onClick="openEndPopup();">Подтвердить</button>
         </div>
         <div id="end-popup" class="end-popup">

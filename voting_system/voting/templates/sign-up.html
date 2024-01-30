@@ -13,9 +13,10 @@
         Дальневосточного отделения РАН
     </div>
     <button type="button" class="btn" onclick="onAdminClick();">ПАНЕЛЬ АДМИНА</button>
-    <form>
-        <input type="text" placeholder="ВВЕДИТЕ ПАРОЛЬ" class="password-input" onfocus="onInputFocus();" onblur="onInputBlur();"/>
-        <input type="submit" value="ВОЙТИ" class="submit-input" />
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="ВВЕДИТЕ ПАРОЛЬ" class="password-input" onfocus="onInputFocus();" onblur="onInputBlur();" name="passw" />
+        <input type="submit" value="ВОЙТИ" class="submit-input"/>
     </form>
     <div class="fail-msg">
         <img src="../static/img/info-red.svg" class="fail-msg-icon">
