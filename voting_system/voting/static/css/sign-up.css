@@ -2,7 +2,7 @@
 
 :root {
     --light-blue: #b9ebfb;
-    --medium-blue: #00B2F0;
+    --main-blue: #163780;
     --ligth-grey: #dedede;
     --light-red: #fee3e4;
     --medium-red: #f4aaaa;
@@ -44,9 +44,9 @@ body {
 }
 
 .btn:hover {
-    color: var(--medium-blue);
+    color: var(--main-blue);
     transform: scale(1.05);
-    box-shadow: 0 0 15px var(--medium-blue);
+    box-shadow: 0 0 15px var(--main-blue);
 }
 
 .bg-img {
@@ -109,9 +109,9 @@ body {
 }
 
 .submit-input:hover {
-    color: var(--medium-blue);
+    color: var(--main-blue);
     transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 0 15px var(--medium-blue);
+    box-shadow: 0 0 15px var(--main-blue);
 }
 
 .fail-msg {
