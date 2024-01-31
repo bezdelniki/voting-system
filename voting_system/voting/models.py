@@ -50,7 +50,6 @@ class VotingProcess(models.Model):
     chosen = models.TextField(blank=False)
     is_entered = models.BooleanField(default=False)
     is_submitted = models.BooleanField(default=False)
-    is_secret = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Бюллетень избирателя {self.user.full_name} в голосовании номер {self.voting.id}'
@@ -66,4 +65,4 @@ def create_voting_process_for_users(sender, instance, action, **kwargs):
             user = Users.objects.get(pk=user_id)
             random_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
             # ДОБАВИТЬ РЕАЛИЗАЦИЮ ОТПРАВКИ КОДА НА EMAIL
-            VotingProcess.objects.create(user=user, voting=instance, enter_code=random_code, is_secret=instance.is_secret)
+            VotingProcess.objects.create(user=user, voting=instance, enter_code=random_code)
