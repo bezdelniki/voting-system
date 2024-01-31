@@ -97,7 +97,8 @@ def vote(request):
 
     if request.method == 'POST':
         email = request.POST.get('email')
-        print(request.POST)
+        choices_list = request.POST.get('choices')
+        print(choices_list)
 
         pass
         # print(checkes)

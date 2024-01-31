@@ -120,7 +120,7 @@ function closeEndPopup() {
 
     endPopup.addEventListener('transitionend', function () {
         endPopup.classList.remove('close');
-    }, {once: true});
+    }, { once: true });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -174,3 +174,23 @@ function closeWarningPopup() {
     warningPopup.classList.remove('open');
     warningPopup.classList.add('close');
 }
+
+var form = document.querySelector('form');
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var formData = new FormData(form);
+
+    var checkboxesArr = Array.from(checkboxes);
+
+    var choices = checkboxesArr.map(function(checkbox) {
+        return checkbox.checked;
+    });
+
+    formData.append('choices', JSON.stringify(choices));
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/voting/');
+    xhr.send(formData);
+});
