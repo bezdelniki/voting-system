@@ -116,7 +116,7 @@ def vote(request):
         voting_process_details.chosen = choices
         voting_process_details.save()
 
-        return redirect('https://stackoverflow.com/questions/14752340/how-can-i-redirect-from-one-domain-to-another-in-django-app')
+        # return redirect('https://stackoverflow.com/questions/14752340/how-can-i-redirect-from-one-domain-to-another-in-django-app')
 
     return render(
         request,
