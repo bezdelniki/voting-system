@@ -98,12 +98,7 @@ def vote(request):
     data['data_length'] = len(data['names'])
 
     if request.method == 'POST':
-        email = request.POST.get('email')
-
         choices = json.loads(request.POST.get('choices'))
-
-        if email:
-            voting_process_id = VotingProcess.objects.filter(user_id=user_id, voting_id=voting_id).first().id
 
         voting_process_details = VotingProcess.objects.filter(id=voting_process_id).first()
         voting_process_details.is_submitted = True

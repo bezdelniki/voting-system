@@ -215,8 +215,8 @@ body {
 
 .end-popup {
     position: absolute;
-    width: 50%;
-    height: 50%;
+    width: 45%;
+    height: 40%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -254,24 +254,8 @@ body {
     text-align: center;
 }
 
-.end-popup-email-note {
-    text-align: justify;
-}
-
-.email {
-    position: relative;
-    width: 75%;
-    height: 15%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border-radius: 30px;
-    outline: none;
-    border: 2px solid black;
-    text-align: center;
-}
-
 .end-popup-note {
-    text-align: justify;
+    text-align: center;
 }
 
 .end-btn {
