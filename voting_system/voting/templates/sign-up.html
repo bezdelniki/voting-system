@@ -15,7 +15,7 @@
     <button type="button" class="btn" onclick="onAdminClick();">ПАНЕЛЬ АДМИНА</button>
     <form method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="ВВЕДИТЕ ПАРОЛЬ" class="password-input" onfocus="onInputFocus();" onblur="onInputBlur();" name="passw" />
+        <input type="text" autocomplete="off" placeholder="ВВЕДИТЕ ПАРОЛЬ" class="password-input" onfocus="onInputFocus();" onblur="onInputBlur();" name="passw" />
         <input type="submit" value="ВОЙТИ" class="submit-input"/>
     </form>
     <div class="fail-msg">

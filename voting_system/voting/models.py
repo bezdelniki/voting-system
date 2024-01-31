@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from math import ceil
 from django.db.models.signals import m2m_changed
 
+
 class Users(models.Model):
     full_name = models.CharField(max_length=256, blank=False, null=False)
     email = models.CharField(max_length=320, blank=False, null=False)
@@ -62,5 +63,6 @@ def create_voting_process_for_users(sender, instance, action, **kwargs):
             random_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
             name = user.full_name
             email = user.email
-            # ДОБАВИТЬ РЕАЛИЗАЦИЮ ОТПРАВКИ КОДА НА EMAIL
+            import voting.email_sending.functions as smtp  # send_email
+            smtp.send_email(email, name, random_code)  # отправка письма с напоминанием на почту
             VotingProcess.objects.create(user=user, voting=instance, enter_code=random_code)
