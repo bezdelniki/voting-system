@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.forms import TextInput
-from .models import Users, Voting, VotingProcess, Candidate
+from .models import Users, Voting, VotingProcess, Candidate, SendResults
 
 
 class UsersAdmin(admin.ModelAdmin):

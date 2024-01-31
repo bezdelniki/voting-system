@@ -1,6 +1,8 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.template.defaulttags import register
+import json
 
 from .models import *
 
@@ -23,11 +25,6 @@ def accept_id(i):
 @register.filter
 def cancel_id(i):
     return (i + 1) * 2
-
-
-@register.filter
-def generate_var_name(i):
-    return f'var{i}'
 
 
 def sign_up(request):
@@ -67,7 +64,11 @@ def sign_up(request):
         else:
             data['error_message'] = 'NotExist'
 
-    return render(request, 'sign-up.html', {'data': data})
+    return render(
+        request,
+        'sign-up.html',
+        context=data
+    )
 
 
 def vote(request):
@@ -97,12 +98,20 @@ def vote(request):
 
     if request.method == 'POST':
         email = request.POST.get('email')
-        choices_list = request.POST.get('choices')
-        print(choices_list)
 
-        pass
-        # print(checkes)
-        # return render(request, 'sign-up.html', {'data': data})
+        choices = json.loads(request.POST.get('choices'))
+
+        if email:
+            voting_process_id = VotingProcess.objects.filter(user_id=user_id, voting_id=voting_id).first().id
+            send_result = SendResults(email=email, voting_process_id=voting_process_id)
+            send_result.save()
+
+        voting_process_details = VotingProcess.objects.filter(id=voting_process_id).first()
+        voting_process_details.is_submitted = True
+        voting_process_details.chosen = choices
+        voting_process_details.save()
+
+        return redirect("http://www.febras.ru/?limitstart=0")
 
     return render(
         request,
