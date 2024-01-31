@@ -35,8 +35,7 @@ function onInputBlur() {
 }
 
 function onAdminClick() {
-    console.log("admin click");
-    
+    window.location.href = "/admin";
 }
 
 function onSignUpFailed() {
