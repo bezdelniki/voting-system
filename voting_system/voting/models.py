@@ -64,5 +64,7 @@ def create_voting_process_for_users(sender, instance, action, **kwargs):
         for user_id in kwargs['pk_set']:
             user = Users.objects.get(pk=user_id)
             random_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+            name = user.full_name
+            email = user.email
             # ДОБАВИТЬ РЕАЛИЗАЦИЮ ОТПРАВКИ КОДА НА EMAIL
             VotingProcess.objects.create(user=user, voting=instance, enter_code=random_code)
