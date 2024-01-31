@@ -58,12 +58,6 @@ class VotingProcess(models.Model):
 
     def __str__(self):
         return f'Бюллетень избирателя {self.user.full_name} в голосовании номер {self.voting.id}'
-
-
-class SendResults(models.Model):
-    voting_process = models.ForeignKey(VotingProcess, on_delete=models.CASCADE)
-    email = models.TextField(blank=False, null=False)
-    
     
 @receiver(m2m_changed, sender=Voting.allowed_users.through)
 def create_voting_process_for_users(sender, instance, action, **kwargs):
