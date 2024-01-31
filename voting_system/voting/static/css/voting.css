@@ -258,6 +258,10 @@ body {
     text-align: center;
 }
 
+.justify {
+    text-align: justify;
+}
+
 .end-btn {
     position: relative;
     left: 50%;
