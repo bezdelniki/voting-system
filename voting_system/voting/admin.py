@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.forms import TextInput
-from .models import Users, Voting, VotingProcess, SendResults, Candidate
+from .models import Users, Voting, VotingProcess, Candidate
 
 class UsersAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email')
@@ -26,4 +26,3 @@ admin.site.register(Users, UsersAdmin)
 admin.site.register(Voting, VotingAdmin)
 #Параметры ниже удалить при фактическом показе проекта с целью скрытия возможности их редактирования
 admin.site.register(VotingProcess)
-admin.site.register(SendResults)

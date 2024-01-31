@@ -54,15 +54,13 @@ class VotingProcess(models.Model):
     def __str__(self):
         return f'Бюллетень избирателя {self.user.full_name} в голосовании номер {self.voting.id}'
 
-class SendResults(models.Model):
-    voting_process = models.ForeignKey(VotingProcess, on_delete=models.CASCADE)
-    email = models.TextField(blank=False, null=False)
-
 @receiver(m2m_changed, sender=Voting.allowed_users.through)
 def create_voting_process_for_users(sender, instance, action, **kwargs):
     if action == 'post_add':
         for user_id in kwargs['pk_set']:
             user = Users.objects.get(pk=user_id)
             random_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+            name = user.full_name
+            email = user.email
             # ДОБАВИТЬ РЕАЛИЗАЦИЮ ОТПРАВКИ КОДА НА EMAIL
             VotingProcess.objects.create(user=user, voting=instance, enter_code=random_code)
