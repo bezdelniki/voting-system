@@ -47,7 +47,7 @@ class VotingProcess(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
     enter_code = models.TextField(max_length=10, blank=False, null=False, unique=True)
-    chosen = models.TextField(blank=False)
+    chosen = models.TextField(default='-')
     is_entered = models.BooleanField(default=False)
     is_submitted = models.BooleanField(default=False)
 
