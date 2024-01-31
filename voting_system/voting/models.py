@@ -52,6 +52,9 @@ class VotingProcess(models.Model):
     is_submitted = models.BooleanField(default=False)
     is_secret = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'Бюллетень избирателя {self.user.full_name} в голосовании номер {self.voting.id}'
+
 class SendResults(models.Model):
     voting_process = models.ForeignKey(VotingProcess, on_delete=models.CASCADE)
     email = models.TextField(blank=False, null=False)

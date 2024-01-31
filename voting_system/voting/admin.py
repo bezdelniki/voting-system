@@ -24,5 +24,6 @@ class VotingAdmin(admin.ModelAdmin):
 
 admin.site.register(Users, UsersAdmin)
 admin.site.register(Voting, VotingAdmin)
+#Параметры ниже удалить при фактическом показе проекта с целью скрытия возможности их редактирования
 admin.site.register(VotingProcess)
 admin.site.register(SendResults)
