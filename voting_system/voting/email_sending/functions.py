@@ -6,8 +6,8 @@ from email.mime.multipart import MIMEMultipart
 port = 465  # для SSL подключения
 smtp_server = "smtp.yandex.ru"
 sender_email = "licknovoting@yandex.ru"  # Емайл
-pass_path = "password.txt"              # Путь до файла с паролем
-password = open(pass_path, 'r').read()
+pass_path = "/password.txt"              # Путь до файла с паролем
+password = "nppzigezxhyhsytm"
 htmlWay = "voting/templates/email_templ.html"# в этом шаблоне заполняются {name}, {_pass} и {body_text} - описание голосования
 html = open(htmlWay, 'r', encoding='utf8').read()
 
