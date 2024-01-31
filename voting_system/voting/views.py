@@ -27,11 +27,6 @@ def cancel_id(i):
     return (i + 1) * 2
 
 
-@register.filter
-def generate_var_name(i):
-    return f'var{i}'
-
-
 def sign_up(request):
     data = {}
 
@@ -116,7 +111,7 @@ def vote(request):
         voting_process_details.chosen = choices
         voting_process_details.save()
 
-        # return redirect('https://stackoverflow.com/questions/14752340/how-can-i-redirect-from-one-domain-to-another-in-django-app')
+        return redirect("http://www.febras.ru/?limitstart=0")
 
     return render(
         request,

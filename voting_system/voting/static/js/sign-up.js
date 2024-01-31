@@ -63,3 +63,7 @@ function setBg(color) {
     var newSrc = curSrc.replace(/dvo-ran-(lg|lb|lr)\.png$/, 'dvo-ran-' + colorSrc[color] + '.png');
     img.src = newSrc;
 }
+
+if (signUpFailed) {
+    onSignUpFailed();
+}
