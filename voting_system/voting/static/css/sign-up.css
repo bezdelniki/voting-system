@@ -127,7 +127,7 @@ body {
     align-items: center;
     padding-left: 10px;
     color: var(--bright-red-color);
-    opacity: 0;
+    opacity: 1;
 }
 
 .fail-msg-text {

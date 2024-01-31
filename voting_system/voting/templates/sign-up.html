@@ -22,14 +22,11 @@
 <div class="fail-msg">
     <img src="../static/img/info-red.svg" class="fail-msg-icon">
     {% if data.error_message != '' %}
-        <script>
-            onSignUpFailed();
-        </script>
+        <div class="fail-msg-text">
+            ВВЕДЕН <br>
+            НЕВЕРНЫЙ КОД
+        </div>
     {% endif %}
-    <div class="fail-msg-text">
-        ВВЕДЕН <br>
-        НЕВЕРНЫЙ КОД
-    </div>
 </div>
 <img src="../static/img/dvo-ran-lg.png" class="bg-img"/>
 <script src="../static/js/sign-up.js"></script>
