@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import TextInput
 from .models import Users, Voting, VotingProcess, SendResults, Candidate
 
 class UsersAdmin(admin.ModelAdmin):
@@ -8,6 +10,9 @@ class UsersAdmin(admin.ModelAdmin):
 class CandidateInline(admin.TabularInline):
     model = Candidate
     extra = 1
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'25'})},
+    }
 
 class VotingAdmin(admin.ModelAdmin):
     list_display = ('start_date', 'finish_date', 'quorum', 'is_secret')  
