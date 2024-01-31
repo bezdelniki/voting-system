@@ -3,27 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Voting page</title>
-    <link href="../static/css/voting.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/voting.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
-    <div class="info-block">
-        <div class="voter-name text-2">Голосующий: {{ user_fullname }}</div>
-        <div class="voting-id text-2"></div>
+<div class="info-block">
+    <div class="voter-name text-2">Голосующий: {{ user_fullname }}</div>
+    <div class="voting-id text-2"></div>
+</div>
+<img src="../static/img/dvo-ran-lg.png" class="logo">
+<form method="post">
+    {% csrf_token %}
+    <div class="warning-popup" id="warning-popup">
+        Для того чтобы подтвердить выбор, необходимо для каждого кандидата указать либо "ОТКЛОНИТЬ", либо
+        "РЕКОМЕНДОВАТЬ"
     </div>
-    <img src="../static/img/dvo-ran-lg.png" class="logo">
-    <form method="post">
-        {% csrf_token %}
-        <div class="warning-popup" id="warning-popup">
-            Для того чтобы подтвердить выбор, необходимо для каждого кандидата указать либо "ОТКЛОНИТЬ", либо "РЕКОМЕНДОВАТЬ"
+    <div class="container">
+        <div class="row header">
+            <div class="col-1 text-4">ФИО</div>
+            <div class="col-2 text-4">Голосование</div>
         </div>
-        <div class="container">
-            <div class="row header">
-                <div class="col-1 text-4">ФИО</div>
-                <div class="col-2 text-4">Голосование</div>
-            </div>
 
-            {% for i in data_length|get_range %}
+        {% for i in data_length|get_range %}
             <div class="row candidate">
                 <div class="col-1">
                     <div class="last-name text-3">
@@ -45,56 +46,57 @@
                     <input type="checkbox" class="hidden-checkbox" name={{ i|generate_var_name }}>
                 </div>
             </div>
-            {% endfor %}
+        {% endfor %}
 
-            <button type="button" class="confirm-btn text-3" onClick="openEndPopup();">Подтвердить</button>
+        <button type="button" class="confirm-btn text-3" onClick="openEndPopup();">Подтвердить</button>
+    </div>
+    <div id="end-popup" class="end-popup">
+        <div class="end-popup-header text-3">
+            Благодарим за участие в голосовании
         </div>
-        <div id="end-popup" class="end-popup">
-            <div class="end-popup-header text-3">
-                Благодарим за участие в голосовании
-            </div>
-            <div class="end-popup-email-note text-2">
-                При необходимости укажите адрес эл. почты, на который по окончании голосования будет выслан протокол с отчетом.
-            </div>
-            <input type="text" placeholder="example@gmail.com" class="email text-2" name="email">
-            <div class="end-popup-note text-2">
-                Для завершения нажмите кнопку ниже.
-            </div>
-            <input type="submit" value="Завершить" class="confirm-btn text-3 end-btn">
+        <div class="end-popup-email-note text-2">
+            При необходимости укажите адрес эл. почты, на который по окончании голосования будет выслан протокол с
+            отчетом.
         </div>
-        <div id="info-popup" class="info-popup">
-            <div>
-                ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
-            </div>
-            <div>
-                «ДАЛЬНЕВОСТОЧНОЕ ОТДЕЛЕНИЕ РОССИЙСКОЙ АКАДЕМИИ НАУК»
-            </div>
-            <div>
-                ПРЕЗИДИУМ
-            </div>
-            <div>
-                БЮЛЛЕТЕНЬ
-            </div>
-            <div>
-                тайного голосования по рекомендации кандидатур на должность директора Федерального государственного
-                бюджетного учреждения науки
-            </div>
-            <div>
-                Института геологии и природопользования
-            </div>
-            <div>
-                Дальневосточного отделения Российской академии наук
-            </div>
-            <div>
-                13 октября 2023 г. Владивосток
-            </div>
-            <div>
-                Голосующий отмечает в бюллетене против фамилии одно из слов "РЕКОМЕНДОВАТЬ" или "ОТКЛОНИТЬ".
-            </div>
+        <input type="text" placeholder="example@gmail.com" class="email text-2" name="email">
+        <div class="end-popup-note text-2">
+            Для завершения нажмите кнопку ниже.
         </div>
-    </form>
-    <img src="../static/img/info.svg" class="info-popup-btn">   
-    <script src="../static/js/voting.js"></script>
+        <input type="submit" value="Завершить" class="confirm-btn text-3 end-btn">
+    </div>
+    <div id="info-popup" class="info-popup">
+        <div>
+            ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
+        </div>
+        <div>
+            «ДАЛЬНЕВОСТОЧНОЕ ОТДЕЛЕНИЕ РОССИЙСКОЙ АКАДЕМИИ НАУК»
+        </div>
+        <div>
+            ПРЕЗИДИУМ
+        </div>
+        <div>
+            БЮЛЛЕТЕНЬ
+        </div>
+        <div>
+            тайного голосования по рекомендации кандидатур на должность директора Федерального государственного
+            бюджетного учреждения науки
+        </div>
+        <div>
+            Института геологии и природопользования
+        </div>
+        <div>
+            Дальневосточного отделения Российской академии наук
+        </div>
+        <div>
+            13 октября 2023 г. Владивосток
+        </div>
+        <div>
+            Голосующий отмечает в бюллетене против фамилии одно из слов "РЕКОМЕНДОВАТЬ" или "ОТКЛОНИТЬ".
+        </div>
+    </div>
+</form>
+<img src="../static/img/info.svg" class="info-popup-btn">
+<script src="../static/js/voting.js"></script>
 </body>
 
 </html>

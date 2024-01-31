@@ -7,12 +7,14 @@ from django.dispatch import receiver
 from math import ceil
 from django.db.models.signals import m2m_changed
 
+
 class Users(models.Model):
     full_name = models.CharField(max_length=256, blank=False, null=False)
     email = models.CharField(max_length=320, blank=False, null=False)
 
     def __str__(self):
         return self.full_name
+
 
 class Voting(models.Model):
     start_date = models.DateTimeField(blank=False, null=False, default=datetime.now())
@@ -25,7 +27,8 @@ class Voting(models.Model):
     def quorum(self):
         total_users_count = self.allowed_users.count()
         return ceil(total_users_count * (self.participation_percentage / 100))
-    
+
+
 class Candidate(models.Model):
     names = models.CharField(max_length=100)
     surnames = models.CharField(max_length=100)
@@ -43,6 +46,7 @@ class Candidate(models.Model):
             'position': self.position,
         }
 
+
 class VotingProcess(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
@@ -54,9 +58,11 @@ class VotingProcess(models.Model):
     def __str__(self):
         return f'Бюллетень избирателя {self.user.full_name} в голосовании номер {self.voting.id}'
 
+
 class SendResults(models.Model):
     voting_process = models.ForeignKey(VotingProcess, on_delete=models.CASCADE)
     email = models.TextField(blank=False, null=False)
+
 
 @receiver(m2m_changed, sender=Voting.allowed_users.through)
 def create_voting_process_for_users(sender, instance, action, **kwargs):

@@ -47,7 +47,7 @@ function onSignUpFailed() {
 function showFailMsg() {
     const failMsg = document.querySelector('.fail-msg');
 
-    failMsg.style.opacity = '1';    
+    failMsg.style.opacity = '1';
 }
 
 function setBg(color) {

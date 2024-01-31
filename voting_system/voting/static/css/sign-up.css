@@ -44,7 +44,7 @@ body {
 }
 
 .btn:hover {
-    color: var(--medium-blue); 
+    color: var(--medium-blue);
     transform: scale(1.05);
     box-shadow: 0 0 15px var(--medium-blue);
 }
@@ -109,7 +109,7 @@ body {
 }
 
 .submit-input:hover {
-    color: var(--medium-blue); 
+    color: var(--medium-blue);
     transform: translate(-50%, -50%) scale(1.05);
     box-shadow: 0 0 15px var(--medium-blue);
 }

@@ -41,10 +41,10 @@ body {
     scrollbar-width: none;
 }
 
-.info-block { 
+.info-block {
     position: absolute;
     top: 20px;
-    left: 20px;   
+    left: 20px;
     height: 10%;
     width: 40%;
     color: var(--shadow-color);
@@ -329,7 +329,7 @@ body {
     height: 5%;
     right: 5%;
     top: 5%;
-    transition: all var(--medium-transition) ease-in-out;    
+    transition: all var(--medium-transition) ease-in-out;
 }
 
 .info-popup-btn:hover {

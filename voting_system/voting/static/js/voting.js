@@ -120,7 +120,7 @@ function closeEndPopup() {
 
     endPopup.addEventListener('transitionend', function () {
         endPopup.classList.remove('close');
-    }, { once: true });
+    }, {once: true});
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -161,7 +161,7 @@ function closeInfoPopup() {
     infoPopup.classList.remove('open');
     infoPopup.classList.add('close');
     infoPopupOpened = false;
-    
+
     container.style.overflowY = 'scroll';
 }
 
