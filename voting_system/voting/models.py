@@ -15,7 +15,6 @@ class Users(models.Model):
         return self.full_name
 
 class Voting(models.Model):
-    variants = models.JSONField(blank=False, null=False)
     start_date = models.DateTimeField(blank=False, null=False, default=datetime.now())
     finish_date = models.DateTimeField(blank=False, null=False, default=datetime.now())
     allowed_users = models.ManyToManyField(Users, related_name='allowed_votings')
@@ -26,6 +25,23 @@ class Voting(models.Model):
     def quorum(self):
         total_users_count = self.allowed_users.count()
         return ceil(total_users_count * (self.participation_percentage / 100))
+    
+class Candidate(models.Model):
+    names = models.CharField(max_length=100)
+    surnames = models.CharField(max_length=100)
+    birth = models.DateField()
+    role = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    voting = models.ForeignKey(Voting, related_name='candidates', on_delete=models.CASCADE)
+
+    def to_json(self):
+        return {
+            'names': self.names,
+            'surnames': self.surnames,
+            'birth': self.birth.strftime('%Y-%m-%d'),
+            'role': self.role,
+            'position': self.position,
+        }
 
 class VotingProcess(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
