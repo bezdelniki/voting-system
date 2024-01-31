@@ -13,6 +13,7 @@
     </div>
     <img src="../static/img/dvo-ran-lg.png" class="logo">
     <form method="post">
+        {% csrf_token %}
         <div class="warning-popup" id="warning-popup">
             Для того чтобы подтвердить выбор, необходимо для каждого кандидата указать либо "ОТКЛОНИТЬ", либо "РЕКОМЕНДОВАТЬ"
         </div>
@@ -22,26 +23,26 @@
                 <div class="col-2 text-4">Голосование</div>
             </div>
 
-            {% for i in data_size|get_range %}
+            {% for i in data_length|get_range %}
             <div class="row candidate">
                 <div class="col-1">
                     <div class="last-name text-3">
                         {{ surnames|hash:i }}
                     </div>
                     <div class="first-name-and-patronymic text-3">
-                        {{ name|hash:i }}
+                        {{ names|hash:i }}
                     </div>
                     <div class="birth-year-and-degree text-2">
-                        {{ birth|hash:i }}, {{ degree|hash:i }}
+                        {{ birth|hash:i }}, {{ role|hash:i }}
                     </div>
                     <div class="position text-2">
                         {{ position|hash:i }}
                     </div>
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn text-3" id="1">РЕКОМЕНДОВАТЬ</button>
-                    <button type="button" class="btn text-3" id="2">ОТКЛОНИТЬ</button>
-                    <input type="checkbox" class="hidden-checkbox" disabled name="var">
+                    <button type="button" class="btn text-3" id={{ i|accept_id }}>РЕКОМЕНДОВАТЬ</button>
+                    <button type="button" class="btn text-3" id={{ i|cancel_id }}>ОТКЛОНИТЬ</button>
+                    <input type="checkbox" class="hidden-checkbox" name={{ i|generate_var_name }}>
                 </div>
             </div>
             {% endfor %}
@@ -55,7 +56,7 @@
             <div class="end-popup-email-note text-2">
                 При необходимости укажите адрес эл. почты, на который по окончании голосования будет выслан протокол с отчетом.
             </div>
-            <input type="text" placeholder="example@gmail.com" class="email text-2">
+            <input type="text" placeholder="example@gmail.com" class="email text-2" name="email">
             <div class="end-popup-note text-2">
                 Для завершения нажмите кнопку ниже.
             </div>
