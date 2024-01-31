@@ -54,7 +54,7 @@ def sign_up(request):
                     user.save()
 
                     request.session['voting_id'] = voting_id
-                    request.session['user_id'] = user.id
+                    request.session['user_id'] = user.user_id
 
                     return redirect('/voting')
                 else:
@@ -81,6 +81,7 @@ def vote(request):
     }
 
     user_id = request.session.get('user_id')
+    print(user_id)
     voting_id = request.session.get('voting_id')
 
     user_fullname = Users.objects.filter(id=user_id).first().full_name
