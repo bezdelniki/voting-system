@@ -103,8 +103,6 @@ def vote(request):
 
         if email:
             voting_process_id = VotingProcess.objects.filter(user_id=user_id, voting_id=voting_id).first().id
-            send_result = SendResults(email=email, voting_process_id=voting_process_id)
-            send_result.save()
 
         voting_process_details = VotingProcess.objects.filter(id=voting_process_id).first()
         voting_process_details.is_submitted = True
@@ -112,6 +110,7 @@ def vote(request):
         voting_process_details.save()
 
         return redirect("http://www.febras.ru/?limitstart=0")
+        return redirect("")
 
     return render(
         request,
